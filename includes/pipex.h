@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 22:25:47 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/21 11:09:30 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:21:48 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/wait.h>
 # include "../libft/includes/libft.h"
 
-void	childs(char **cmd);
+void	pipex(int ac, char **av, char **envp);
 char	**get_cmd(const char *arg_cmd, char **envp);
 void	here_doc(char *limit, int ac);
 
