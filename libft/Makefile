@@ -6,7 +6,7 @@
 #    By: alfgarci <alfgarci@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 18:44:21 by alfgarci          #+#    #+#              #
-#    Updated: 2022/09/25 17:46:03 by alfgarci         ###   ########.fr        #
+#    Updated: 2022/10/22 06:36:11 by alfgarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,18 +71,18 @@ CC	=	gcc -Wall -Wextra -Werror
 NAME 	=	libft.a
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o} -I ${INC}
+	@${CC} -c $< -o ${<:.c=.o} -I ${INC}
 
 ${NAME}:	${OBJS}
-		ar rc ${NAME} ${OBJS}
+		@ar rc ${NAME} ${OBJS}
 	
 all:		${NAME}
 
 clean:
-		rm -f ${OBJS}
+		@rm -f ${OBJS}
 
 fclean:		clean
-		rm -f ${NAME}
+		@rm -f ${NAME}
 
 re:		fclean all
 

@@ -6,9 +6,14 @@
 #    By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 15:35:22 by alfgarci          #+#    #+#              #
-#    Updated: 2022/10/21 17:21:36 by alfgarci         ###   ########.fr        #
+#    Updated: 2022/10/22 06:43:31 by alfgarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RED		=\033[1;31m
+GREEN	=\033[1;32m
+YELLOW	=\033[1;33m
+NC		=\033[0m
 
 SRCS =	src/get_cmd.c \
 		src/pipex.c \
@@ -25,21 +30,25 @@ CC	=	cc -Wall -Wextra -Werror
 NAME 	=	pipex
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o} -I ${INC}
+	@${CC} -c $< -o ${<:.c=.o} -I ${INC}
 
 ${NAME}:	${OBJS}
-		@make re -C ./libft
-		${CC} ${OBJS} -Llibft -lft -o ${NAME}
+		@echo "${RED}Compiling...${NC}"
+		@make -C ./libft
+		@${CC} ${OBJS} -Llibft -lft -o ${NAME}
+		@echo "${GREEN}${NAME} READY!${NC}"
 
 all:		${NAME}
 
 clean:
 		@make clean -C ./libft
-		rm -f ${OBJS}
+		@rm -f ${OBJS}
+		@echo "${YELLOW}OBJS REMOVED!${NC}"
 
 fclean:		clean
 		@make fclean -C ./libft
-		rm -f ${NAME}
+		@rm -f ${NAME}
+		@echo "${YELLOW}${NAME} REMOVED!${NC}"
 
 re:		fclean all
 

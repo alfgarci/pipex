@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 02:29:14 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/21 12:50:07 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/10/22 06:23:36 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ int	check_path(char **cmd, char **envp)
 	path = get_path(envp);
 	if (!path)
 		return (0);
-	if (access(*cmd, F_OK) == 0)
-		return (1);
 	while (path[++i])
 	{
 		tmp = ft_strjoin(path[i], *cmd);
@@ -64,6 +62,8 @@ int	check_path(char **cmd, char **envp)
 		}
 		free(tmp);
 	}
+	if (access(*cmd, F_OK) == 0)
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:01:57 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/21 17:21:53 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/10/23 02:12:44 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ void	pipex(int ac, char **av, char **envp)
 	int		outfile;
 	char	**last_cmd;
 
-	outfile = open(av[ac -1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 	{
 		here_doc(av[2], ac);
+		outfile = open(av[ac -1], O_CREAT | O_WRONLY | O_APPEND, 0644);
 		i = 3;
 	}
 	else
 	{
 		if (access(av[1], F_OK) != 0)
 			return (perror("error: input file not found."));
-		infile = open(av[1], O_RDONLY, 0777);
+		outfile = open(av[ac -1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		infile = open(av[1], O_RDONLY);
 		dup2(infile, STDIN_FILENO);
 		i = 2;
 	}

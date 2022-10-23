@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:22:25 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/21 17:20:24 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/10/23 02:54:32 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	here_doc(char *limit, int ac)
 {
-	int		pid_quote;
 	int		pipe_ends[2];
 	char	*line;
 
 	if (ac < 6)
 		return (perror("Bad format.\n"));
 	pipe(pipe_ends);
-	pid_quote = fork();
-	if (pid_quote == 0)
+	if (fork() == 0)
 	{
 		close(pipe_ends[0]);
 		ft_printf("pipe heredoc> ");
