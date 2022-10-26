@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:01:57 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/23 02:12:44 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:51:45 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	pipex(int ac, char **av, char **envp)
 
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 	{
-		here_doc(av[2], ac);
-		outfile = open(av[ac -1], O_CREAT | O_WRONLY | O_APPEND, 0644);
+		here_doc(av, ac, &outfile);
 		i = 3;
 	}
 	else

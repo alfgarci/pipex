@@ -6,7 +6,7 @@
 #    By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 15:35:22 by alfgarci          #+#    #+#              #
-#    Updated: 2022/10/22 06:43:31 by alfgarci         ###   ########.fr        #
+#    Updated: 2022/10/26 10:25:08 by alfgarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ INC 	=	includes/
 
 CC	=	cc -Wall -Wextra -Werror
 
+CC_S =	cc -Wall -Wextra -Werror -fsanitize=address
 
 NAME 	=	pipex
 
@@ -39,6 +40,13 @@ ${NAME}:	${OBJS}
 		@echo "${GREEN}${NAME} READY!${NC}"
 
 all:		${NAME}
+
+sanitice:   ${OBJS}
+		@echo "${RED}Compiling...${NC}"
+		@make -C ./libft
+		@${CC_S} ${OBJS} -Llibft -lft -o ${NAME}
+		@echo "${GREEN}${NAME} READY!${NC}"
+
 
 clean:
 		@make clean -C ./libft
