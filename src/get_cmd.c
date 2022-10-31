@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 02:29:14 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/22 06:23:36 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/10/31 20:38:46 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	check_path(char **cmd, char **envp)
 	}
 	if (access(*cmd, F_OK) == 0)
 		return (1);
-	return (0);
+	ft_printf("command not found: %s\n", cmd[0]);
+	exit(-1);
 }
 
 char	**get_cmd(const char *arg_cmd, char **envp)
@@ -74,7 +75,6 @@ char	**get_cmd(const char *arg_cmd, char **envp)
 	cmd = ft_split(arg_cmd, ' ');
 	if (!cmd)
 		return (NULL);
-	if (!check_path(cmd, envp))
-		return (NULL);
+	check_path(cmd, envp);
 	return (cmd);
 }
