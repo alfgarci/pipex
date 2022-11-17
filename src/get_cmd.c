@@ -6,42 +6,49 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 02:29:14 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/10/31 20:38:46 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/11/17 23:32:48 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-char	**get_path(char **envp)
+static char	*add_slash(char *str)
+{
+	char	*ret;
+
+	ret = ft_strjoin(str, "/");
+	free(str);
+	return (ret);
+}
+
+static char	**get_path(char **envp)
 {
 	int		i;
 	int		j;
 	char	**path;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	path = NULL;
-	while (envp[i])
+	while (envp[++i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			path = ft_split(envp[i] + 5, ':');
 			if (!path)
 				return (NULL);
-			while (path[j])
+			while (path[++j])
 			{
 				if (path[j][ft_strlen(path[j]) - 1] != '/')
-					path[j] = ft_strjoin(path[j], "/");
-				j++;
+					path[j] = add_slash(path[j]);
 			}
 			break ;
 		}
-		i++;
 	}
 	return (path);
 }
 
-int	check_path(char **cmd, char **envp)
+static int	check_path(char **cmd, char **envp)
 {
 	int		i;
 	char	**path;
@@ -56,15 +63,17 @@ int	check_path(char **cmd, char **envp)
 		tmp = ft_strjoin(path[i], *cmd);
 		if (access(tmp, F_OK) == 0)
 		{
+			free_split(path);
 			free(*cmd);
 			*cmd = tmp;
 			return (1);
 		}
 		free(tmp);
 	}
+	free_split(path);
 	if (access(*cmd, F_OK) == 0)
 		return (1);
-	ft_printf("command not found: %s\n", cmd[0]);
+	ft_printf("%s: Command not found\n", cmd[0]);
 	exit(-1);
 }
 

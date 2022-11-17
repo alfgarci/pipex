@@ -6,7 +6,7 @@
 #    By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 15:35:22 by alfgarci          #+#    #+#              #
-#    Updated: 2022/10/31 20:48:41 by alfgarci         ###   ########.fr        #
+#    Updated: 2022/11/17 23:34:02 by alfgarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NC		=\033[0m
 SRCS =	src/get_cmd.c \
 		src/pipex.c \
 		src/here_doc.c \
+		src/utils.c \
 		src/main.c
 
 OBJS 	=	${SRCS:.c=.o}
