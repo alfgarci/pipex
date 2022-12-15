@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:22:25 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/11/17 22:55:34 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/12/15 18:37:23 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	here_doc(char **av, int ac, int *outfile)
 		while (ft_strncmp(line, av[2], ft_strlen(av[2]) + 1) != 0)
 		{
 			write(pipe_ends[1], line, ft_strlen(line));
+			free(line);
 			ft_printf("pipe heredoc> ");
 			line = get_next_line(0);
 		}
