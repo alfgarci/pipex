@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:01:57 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/11/17 23:33:08 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:05:50 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	pipex(int ac, char **av, char **envp)
 	if (execve(last_cmd[0], last_cmd, NULL) == -1)
 	{
 		free_split(last_cmd);
-		return (perror("prueba"));
+		return (perror(last_cmd[0]));
 	}
 }
