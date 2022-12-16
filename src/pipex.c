@@ -6,7 +6,7 @@
 /*   By: alfgarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:01:57 by alfgarci          #+#    #+#             */
-/*   Updated: 2022/12/15 20:05:50 by alfgarci         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:50:37 by alfgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	childs(char **cmd)
 	{
 		close(pipe_ends[1]);
 		dup2(pipe_ends[0], STDIN_FILENO);
-		waitpid(pid, NULL, 0);
 	}
 	free_split(cmd);
 }
